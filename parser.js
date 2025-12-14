@@ -20,4 +20,4 @@ function htmlToTxt(html){
 }
 
 const txt = document.body.innerHTML.replace(/<script src="parser.js"><\/script>$/, '');
-document.body.innerHTML = `<h1>${document.title}</h1>${txtToHtml(txt)}`;
+document.body.innerHTML = `<h1>${document.title}</h1>${txtToHtml(txt)}<h2>Source text</h2><pre>${txt}</pre>`;
