@@ -1,1 +1,9 @@
-
+.bold{
+	font-weight: bold;
+}
+.italic{
+	font-style: italic;
+}
+body{
+	font-family: sans-serif;
+}
