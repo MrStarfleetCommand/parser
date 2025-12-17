@@ -1,5 +1,6 @@
 function txtToHtml(txt){
 	let html = txt;
+	html = html.replace(/^\s+/, '');
 	html = html.replace(/\s+$/, '');
 	html = html.replace(/^(======) *(.+?) *\1 *$/gm, '<h6 class="heading">$2</h6>');
 	html = html.replace(/^(=====) *(.+?) *\1 *$/gm, '<h5 class="heading">$2</h5>');
@@ -27,6 +28,8 @@ function htmlToTxt(html){
 	txt = txt.replace(/<a href="(.+?)" class="external-link">(.+?)<\/a>/g, '[$1 $2]');
 	txt = txt.replace(/\n\n\n+/g, '\n\n');
 	txt = txt.replace(/^(==+ .+? ==+\n)\n/gm, '$1');
+	txt = txt.replace(/^\s+/, '');
+	txt = txt.replace(/\s+$/, '');
 	return txt;
 }
 
