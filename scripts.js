@@ -1,4 +1,4 @@
-import {txtToHtml, htmlToTxt} from 'parser.js';
+import {txtToHtml, htmlToTxt} from '/parser.js';
 (async () => {
 	const currentPage = location.pathname.replace(/^\/parser\/(.*)\.html$/, '$1');
 	const pageName = currentPage ? currentPage : 'index';
