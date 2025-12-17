@@ -9,14 +9,24 @@ function txtToHtml(txt){
 	html = html.replace(/^ *([^<\s].*?) *$/gm, '<p>$1</p>');
 	html = html.replace(/''' *([^'].*?) *'''/g, '<span class="bold">$1</span>');
 	html = html.replace(/'' *([^'].*?) *''/g, '<span class="italic">$1</span>');
-	html = html.replace(/\[ *(\S+?) +(.+?) *\]/g, '<a href="$1" class="external-link">$2</a>');
+	html = html.replace(/\[ *([^\s"]+?) +(.+?) *\]/g, '<a href="$1" class="external-link">$2</a>');
 	html = html.replace(/\s+/g, ' ');
 	return html;
 }
 
 function htmlToTxt(html){
 	let txt = html;
-	// TODO parser HTML to TXT
+	txt = txt.replace(/\s*<h6 class="heading">(.+?)<\/h6>\s*/g, '\n====== $1 ======\n');
+	txt = txt.replace(/\s*<h5 class="heading">(.+?)<\/h5>\s*/g, '\n===== $1 =====\n');
+	txt = txt.replace(/\s*<h4 class="heading">(.+?)<\/h4>\s*/g, '\n==== $1 ====\n');
+	txt = txt.replace(/\s*<h3 class="heading">(.+?)<\/h3>\s*/g, '\n=== $1 ===\n');
+	txt = txt.replace(/\s*<h2 class="heading">(.+?)<\/h2>\s*/g, '\n== $1 ==\n');
+	txt = txt.replace(/\s*<p>(.+?)<\/p>\s*/g, '\n\n$1\n\n');
+	txt = txt.replace(/<span class="bold">(.+?)<\/span>/g, `'''$1'''`);
+	txt = txt.replace(/<span class="italic">(.+?)<\/span>/g, `''$1''`);
+	txt = txt.replace(/<a href="(.+?)" class="external-link">(.+?)<\/a>/g, '[$1 $2]');
+	txt = txt.replace(/\n\n\n+/g, '\n\n');
+	txt = txt.replace(/^(==+ .+? ==+\n)\n/gm, '$1');
 	return txt;
 }
 
