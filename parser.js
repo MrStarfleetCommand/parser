@@ -30,12 +30,4 @@ function htmlToTxt(html){
 	return txt;
 }
 
-async function pageSetup(){
-	const currentPage = location.pathname.replace(/^\/parser\/(.*)\.html$/, '$1');
-	const pageName = currentPage ? currentPage : 'index';
-	const pageSource = await fetch(`${pageName}.txt`);
-	const txt = await pageSource.text();
-	document.body.innerHTML = `<h1>${document.title}</h1>${txtToHtml(txt)}`;
-}
-
-pageSetup();
+export {txtToHtml, htmlToTxt};
