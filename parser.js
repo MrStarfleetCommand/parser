@@ -19,5 +19,12 @@ function htmlToTxt(html){
 	return txt;
 }
 
-const txt = document.body.innerHTML.replace(/<script src="parser.js"><\/script>$/, '');
-document.body.innerHTML = `<h1>${document.title}</h1>${txtToHtml(txt)}<h2>Source text</h2><pre>${txt}</pre>`;
+async function pageSetup(){
+	const currentPage = location.pathname.replace(/^\/parser\/(.*)\.html$/, '$1');
+	const pageName = currentPage ? currentPage : 'index';
+	const pageSource = await fetch(`${pageName}.txt`);
+	const txt = await pageSource.text();
+	document.body.innerHTML = `<h1>${document.title}</h1>${txtToHtml(txt)}`;
+}
+
+pageSetup();
