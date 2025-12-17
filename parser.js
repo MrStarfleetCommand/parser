@@ -1,5 +1,6 @@
 function txtToHtml(txt){
 	let html = txt;
+	html = html.replace(/</g, '&lt;');
 	html = html.replace(/^\s+/, '');
 	html = html.replace(/\s+$/, '');
 	html = html.replace(/^(======) *(.+?) *\1 *$/gm, '<h6 class="heading">$2</h6>');
