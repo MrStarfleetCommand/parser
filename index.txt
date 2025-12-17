@@ -1,0 +1,4 @@
+This is an example '''parser''', with syntax similar to [https://www.mediawiki.org/wiki/Wikitext wikitext], but ''much'' simpler.
+
+== Why? ==
+Because I want to.
